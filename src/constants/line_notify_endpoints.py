@@ -1,0 +1,5 @@
+AUTHORIZE_URL = 'https://notify-bot.line.me/oauth/authorize'
+TOKEN_URL = 'https://notify-bot.line.me/oauth/token'
+MESSAGE_URL = 'https://notify-api.line.me/api/notify'
+STATUS_URL = 'https://notify-api.line.me/api/status'
+REVOKED_URL = 'https://notify-api.line.me/api/revoke'
