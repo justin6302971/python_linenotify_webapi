@@ -8,6 +8,10 @@ from sqlalchemy.ext.declarative import DeclarativeMeta
 
 
 sqlalchemy_database_uri = environ.get('SQLALCHEMY_DATABASE_URI')
+#sqlalchemy_database_uri = 'postgresql://tempuser_local:temppassword_local@postgres_linenotify_local/local_testdb'
+
+print(f'url:{sqlalchemy_database_uri}')
+
 engine = create_engine(sqlalchemy_database_uri, echo=True, future=True)
 
 Session = sessionmaker(bind=engine)

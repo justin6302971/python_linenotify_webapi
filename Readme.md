@@ -33,14 +33,30 @@ ngrok http 8000
 
 #dependancy seperately
 
-
+#check dependancy and output to requirements.txt file
+pip freeze > requirements.txt
 
 # install by requirements.txt
 pip install -r requirements.txt
 
 
+# test docker build
+docker build -t linenotifyapi-docker-test:dev  -f ./src/Dockerfile .
+docker run  --network linenotify-nw --name linenotifyapi-docker-test  -p 8000:8000 linenotifyapi-docker-test:dev
 
-# https://notify-bot.line.me/oauth/authorize?response_type=code&scope=notify&response_mode=form_post&client_id=dNXMzt06nnLpuagrB9IvFw&redirect_uri=https://8344-114-42-13-203.jp.ngrok.io&state=f094a459-1d16-42d6-a709-c2b61ec53d60
+docker rm linenotifyapi-docker-test
+docker stop linenotifyapi-docker-test
+
+docker exec  -it webapi_linenotify_local sh
+
+docker logs -f webapi_linenotify_local 
+# run docker by docker compose 
+docker-compose up -d --build
+
+docker-compose down --rmi local
+
+# check loaded environments
+printenv
 ```
 
 
@@ -75,3 +91,6 @@ pip install -r requirements.txt
 17. [gunicorn doc](https://docs.gunicorn.org/en/latest/run.html#commonly-used-arguments)
 18. [comparison for uvicorn and gunicorn](https://ithelp.ithome.com.tw/articles/10300754?sc=rss.iron)
 19. [docker python](https://ithelp.ithome.com.tw/articles/10303226?sc=rss.iron)
+20. [docker compose sample](https://ithelp.ithome.com.tw/articles/10244961)
+21. [nginx settings](https://medium.com/starbugs/web-server-nginx-2-bc41c6268646)
+22. [python images comparison](https://pythonspeed.com/articles/base-image-python-docker-images/)

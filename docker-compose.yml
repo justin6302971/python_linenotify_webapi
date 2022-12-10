@@ -1,0 +1,29 @@
+# canonical configuration
+version: "3.7"
+
+services:
+    nginx:
+        container_name: nginx_${ENV_TYPE}
+        image: nginx:1.21.6-alpine
+        networks:
+            - linenotify-nw
+    webapi:
+        build:
+            context: ./
+            dockerfile: ./src/Dockerfile
+        image: webapi_${ENV_TYPE}:dev
+        container_name: webapi_${ENV_TYPE}
+        networks:
+            - linenotify-nw
+    postgres:
+        container_name: postgres_${ENV_TYPE}
+        image: postgres:12
+        networks:
+            - linenotify-nw
+
+networks:
+    linenotify-nw:
+        name: linenotify-nw
+
+        
+  
