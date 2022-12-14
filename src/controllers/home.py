@@ -13,7 +13,7 @@ home = Blueprint("home", __name__, url_prefix="/api/v1/home")
 
 
 @home.post("/oauth")
-@jwt_required()
+# @jwt_required()
 def oauth():
     code = request.form.get('code', '')
 

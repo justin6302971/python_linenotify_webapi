@@ -7,6 +7,8 @@ services:
         image: nginx:1.21.6-alpine
         networks:
             - linenotify-nw
+        depends_on:
+            - webapi
     webapi:
         build:
             context: ./
@@ -15,6 +17,8 @@ services:
         container_name: webapi_${ENV_TYPE}
         networks:
             - linenotify-nw
+        depends_on:
+            - postgres
     postgres:
         container_name: postgres_${ENV_TYPE}
         image: postgres:12
